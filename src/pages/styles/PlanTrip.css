@@ -1,0 +1,48 @@
+.plan-trip {
+    padding: 2rem;
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .plan-trip h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #1d3557; /* Navy blue */
+  }
+
+  .input-section {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap; /* Ensure responsiveness */
+  }
+
+  .input-section input,
+  .input-section select {
+
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 150px; /* Fixed width for consistency */
+    text-align: center;
+  }
+
+  .input-section button {
+    background-color: #f36f38;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .input-section button:hover {
+    background-color: #d2691e;
+  }

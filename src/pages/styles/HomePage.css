@@ -1,0 +1,225 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FAF8F4; /* Off-White */
+    color: #333333;
+    margin: 0;
+    padding: 0;
+  }
+
+  .homepage {
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    background-color: #FAF8F4; /* Match page background */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+
+
+  .navbar-links {
+    display: flex;
+    gap: 0.8rem;
+  }
+
+  .navbar-links button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: #1D3557;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar-links button:hover {
+    color: #F36F38; /* Muted Orange */
+  }
+
+  /* Hero Section */
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 2rem; /* Adjusted padding */
+    height: 80vh; /* Reduced height */
+    gap: 2rem;
+}
+  .hero-text {
+    flex: 1;
+  }
+
+  .hero-text h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #1D3557;
+    margin-bottom: 1rem;
+  }
+
+  .hero-text p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #333333;
+  }
+
+  .primary-button {
+    background-color: #F36F38; /* Muted Orange */
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .primary-button:hover {
+    background-color: #D2691E;
+  }
+
+  /* Slideshow */
+  .hero-slideshow {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .hero-slideshow .slideshow-images {
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .hero-slideshow .slideshow-images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 1s ease-in-out;
+  }
+
+  .hero-slideshow .slideshow-images img.active {
+    opacity: 1;
+  }
+
+  .slideshow-dots {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .slideshow-dots span {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .slideshow-dots span.active {
+    background-color: #F36F38; /* Muted Orange */
+  }
+
+/* Featured Destinations Section */
+.featured-destinations {
+    margin-top: -40px;
+    padding: 3rem 2rem;
+    background-color: #FAF8F4; /* Match the page background */
+    text-align: center;
+  }
+
+  .featured-destinations h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1D3557;
+    margin-bottom: 2rem;
+  }
+
+  .destinations-grid {
+    display: flex;
+    justify-content: center; /* Center the cards horizontally */
+    align-items: stretch; /* Ensure all cards are the same height */
+    gap: 2.5rem; /* Space between the cards */
+  }
+
+  .destination-card {
+    background: #FAF8F4;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 250px; /* Smaller card width */
+    flex: 0 0 250px; /* Ensure cards stay the same size */
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .destination-card:hover {
+    transform: translateY(-5px); /* Lift on hover */
+  }
+
+  .destination-card img {
+    width: 100%;
+    height: 150px; /* Smaller image height */
+    object-fit: cover;
+  }
+
+  .destination-card h3 {
+    margin: 1rem;
+    font-size: 1.2rem; /* Smaller title size */
+    color: #1D3557;
+  }
+
+  .destination-card p {
+    margin: 0 1rem 1rem;
+    font-size: 0.9rem; /* Smaller text size */
+    color: #666;
+  }
+
+  .destination-card button {
+    margin: 1rem;
+    background-color: #F36F38;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    align-self: center; /* Center the button */
+  }
+
+  .destination-card button:hover {
+    background-color: #D2691E;
+  }
+
+
+  /* Sections */
+  #plan-trip,
+  #itineraries,
+  #flights,
+  #about {
+    padding: 3rem 2rem;
+    text-align: center;
+  }
