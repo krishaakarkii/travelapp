@@ -1,19 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./styles/HomePage.css";
 import PlanTrip from "./PlanTrip";
-import Itineraries from "./Itineraries";
 import Flights from "./Flights";
 import About from "./About";
+import DestinationDetails from "./DestinationDetails"; // New Component
+
 import beachImage from "/src/assets/beach.jpg";
 import sunsetImage from "/src/assets/sunset.jpg";
 import desertImage from "/src/assets/desert.jpg";
 
 const HomePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedDestination, setSelectedDestination] = useState(null);
+  const [itinerary, setItinerary] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   const images = [desertImage, sunsetImage, beachImage];
   const planTripRef = useRef(null);
   const flightsRef = useRef(null);
-  const itinerariesRef = useRef(null);
   const aboutRef = useRef(null);
 
   useEffect(() => {
@@ -27,14 +31,29 @@ const HomePage = () => {
     ref.current.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleViewDetails = async (destination, days) => {
+    setLoading(true);
+    setSelectedDestination(destination);
+
+    try {
+      const response = await fetch(
+        `http://localhost:4000/api/itinerary?destination=${destination}&days=${days}`
+      );
+      const data = await response.json();
+      setItinerary(data);
+    } catch (error) {
+      console.error("Failed to fetch itinerary:", error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="homepage">
       {/* Navbar */}
       <div className="navbar">
-
         <div className="navbar-links">
           <button onClick={() => scrollToSection(planTripRef)}>Plan Trip</button>
-          <button onClick={() => scrollToSection(itinerariesRef)}>Itinerary</button>
           <button onClick={() => scrollToSection(flightsRef)}>Flights</button>
           <button onClick={() => scrollToSection(aboutRef)}>About</button>
         </div>
@@ -82,35 +101,40 @@ const HomePage = () => {
       <div className="featured-destinations">
         <h2>Explore Popular Destinations</h2>
         <div className="destinations-grid">
-          <div className="destination-card">
-            <img src="/src/assets/Tokyo.jpg" alt="Tokyo" />
-            <h3>A Perfect 3-Day Trip to Tokyo</h3>
-            <p>Explore the vibrant culture, food, and technology of Tokyo.</p>
-            <button className="primary-button">View Details</button>
-          </div>
-          <div className="destination-card">
-            <img src="/src/assets/paris.jpg" alt="Paris" />
-            <h3>A One-Week Trip to Paris</h3>
-            <p>Discover the romance, history, and landmarks of Paris.</p>
-            <button className="primary-button">View Details</button>
-          </div>
-          <div className="destination-card">
-            <img src="/src/assets/Newyork.webp" alt="Maldives" />
-            <h3>A five day Getaway to NewYork</h3>
-            <p>Feel the pulse of the city that never sleeps.</p>
-            <button className="primary-button">View Details</button>
-          </div>
+          {[
+            { name: "Tokyo", image: "/src/assets/Tokyo.jpg", days: 3 },
+            { name: "Paris", image: "/src/assets/paris.jpg", days: 7 },
+            { name: "New York", image: "/src/assets/Newyork.webp", days: 5 },
+          ].map((destination) => (
+            <div key={destination.name} className="destination-card">
+              <img src={destination.image} alt={destination.name} />
+              <h3>{`A Perfect ${destination.days}-Day Trip to ${destination.name}`}</h3>
+              <p>Explore the unique experiences of {destination.name}.</p>
+              <button
+                className="primary-button"
+                onClick={() => handleViewDetails(destination.name, destination.days)}
+              >
+                View Details
+              </button>
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* Destination Details Section */}
+      {selectedDestination && (
+        <div className="destination-details">
+          <DestinationDetails
+            destination={selectedDestination}
+            itinerary={itinerary}
+            loading={loading}
+          />
+        </div>
+      )}
 
       {/* Plan Trip Section */}
       <div ref={planTripRef} id="plan-trip">
         <PlanTrip />
-      </div>
-
-      {/* Itineraries Section */}
-      <div ref={itinerariesRef} id="itineraries">
-        <Itineraries />
       </div>
 
       {/* Flights Section */}

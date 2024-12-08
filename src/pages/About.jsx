@@ -16,8 +16,8 @@ const About = () => {
         <h3>How It Works</h3>
         <ul>
           <li>Search for your destination.</li>
-          <li>Select the number of days and budget.</li>
-          <li>Get a complete itinerary, including flights, hotels, and activities.</li>
+          <li>Select the number of days.</li>
+          <li>Get a complete itinerary, including resturants to dine in, tourist attractions and activities.</li>
         </ul>
       </div>
     </div>
